@@ -2,14 +2,15 @@
 
 # COMP2113/ENGG1340
 
-## Team Members:
+## Team Members (Group 116):
 1. **Cheung Yu Lung** UID: 3035477616
 2. **Abdulwadood Ashraf Faazli** UID:3035832751
 
 # Game Description
 
 - Our game is a C++ version of the very popular TV show "Who wants to be a millionaire". Everyone wants a shot at this game but the reality is that this isn't possible. We believe our game would help people feel the adrenaline of the TV show and put their own skills to the test.
-- Every correcty answered question adds some value to the players wallet. The sequential values at questions are **$500, $1000, $2000, $5,000, $10,000, $20,000, $50,000, $75,000, $150,000, $250,000, $500,000 and finally, $1,000,000**. If the user manages to reach $1,000,000, they are said to have beaten the game.
+- First of all, we will ask the user for his/her username and make sure that that username isn't taken by someone else who has played the game. This is analogous to the **same person not paying the game twice** in real life. Then once the game starts, we'll ask the player a series of questions.
+- Every correctly answered question adds some value to the players wallet (amount won so far). The sequential values at questions are **$500, $1000, $2000, $5,000, $10,000, $20,000, $50,000, $75,000, $150,000, $250,000, $500,000 and finally, $1,000,000**. If the user manages to reach $1,000,000, they are said to have beaten the game.
 - The game involves questions from a variety of topics including mathematics, science, general knowledge, and history. Players can only answer correctly for every question – any incorrect answer would lead to direct disqualification.
 - Players have 4 lifelines to use over the course of a session. They are:
   -  **Fifty-Fifty**: When chosen, the two incorrect choices would be removed from the avilable options so the chances of a correct guess would rise from 25% to 50%. 
@@ -19,3 +20,6 @@
 
 # Features to Implement
 
+1) **Generation of random game sets or events**: We will introduce the element of randomness in our code during lifelines. When the user selects 'phone a friend' or 'ask the audience', since we can't perform these actions actually, we'll simulate them randomly. For this, we'll first generate a random number. If the number is even, we'll just directly hint towards the answer and the player can guess it quite easily. Otherwise, if it's odd, we'll cut out a wrong option from the choices, so the player only has 3 choices to choose from (winning probability went up from 25% to 33.3%).
+
+2) **Data Structures**: The data structures we plan to use are pretty straightforward. We'll use arrays to store the information of the user like username. The score (amount in wallet) of the user will be an integer. The username itself will be a string.
