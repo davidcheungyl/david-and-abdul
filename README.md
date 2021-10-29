@@ -20,11 +20,12 @@
 
 # Features to Implement
 
-1) **Generation of random game sets or events**: We will introduce the element of randomness in our code during lifelines. When the user selects 'phone a friend' or 'ask the audience', since we can't perform these actions actually, we'll simulate them randomly. For this, we'll first generate a random number. If the number is even, we'll just directly hint towards the answer and the player can guess it quite easily. Otherwise, if it's odd, we'll cut out a wrong option from the choices, so the player only has 3 choices to choose from (winning probability went up from 25% to 33.3%).
+1) **Generation of random game sets or events:** We will introduce the element of randomness in our code during lifelines. When the user selects 'phone a friend' or 'ask the audience', since we can't perform these actions actually, we'll simulate them randomly. For this, we'll first generate a random number. If the number is even, we'll just directly hint towards the answer and the player can guess it quite easily. Otherwise, if it's odd, we'll cut out a wrong option from the choices, so the player only has 3 choices to choose from (winning probability went up from 25% to 33.3%).
 
-2) **Data Structures**: The data structures we plan to use are pretty straightforward. We'll use arrays to store the information of the user like username. The score (amount in wallet) of the user will be an integer. The username itself will be a string.
+2) **Data Structures:** The data structures we plan to use are pretty straightforward. We'll use arrays to store the information of the user like username. The score (amount in wallet) of the user will be an integer. The username itself will be a string.
 
-3) **Dynamic memory management**: We need an array to store the names of the users who have played the game. So, every time a new player entered the game, a new array will be created to store the new username, and the old array will be deleted, through dynamic memory management.
+3) **Dynamic memory management:** We need an array to store the names of the users who have played the game. So, every time a new player entered the game, a new array will be created to store the new username, and the old array will be deleted, through dynamic memory management.
 
-4) **File I/O:**: The game results of each individual player will be stored in a file. The question banks will also be stored in a file. 
+4) **File I/O:** The game results of each individual player will be stored in a file. If they decide to save the game and continue later, we'll store all their current information in a file and extract it from there when they return (start the game with the same username). The question banks will also be stored in files. 
 
+5) **Program codes in multiple files:** We will create different .cpp files for different fucntions for easier compiling. Beacuse of this, we'll also need separate header (.h) files for those functions. In the end, we plan to organize all of this through a Makefile.
