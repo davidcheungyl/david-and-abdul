@@ -35,8 +35,7 @@ In addition to all this, we have added a realistic and smooth typing effect to o
 
 # Running the game
 
-You can very conveniently compile all codes needed for this game and generate the final executable file for your game by this simple command:
+You can very conveniently compile all codes needed for this game and generate the final executable file for your game by this simple command:<br />
 **make game**
-This has been made possible by our makefile.
 
 **IF YOU HAVE ANY QUESTIONS, FEEL FREE TO REACH OUT TO US**
