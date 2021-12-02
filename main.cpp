@@ -14,7 +14,7 @@
 
 using namespace std;
 
-// Defining the functions used in this program, including those from other files
+// Defining the functions used in this file, including those from other files
 
 string upper(string str);
 void type(string str);
@@ -22,6 +22,9 @@ void printDiamond();
 string startingGame();
 void lifelines(string name, string answer, bool &fifty, bool &call, bool &ask);
 void quitGame(string name, int ques, string value);
+void fiftyFifty(string name, string answer);
+void phoneOrAsk(string name, string answer, string life);
+void secondChance(string name, int ques, string answer, int &indVal, int &indAns, string values[], string total);
 
 // Main program, basically runs everything
 int main(){
@@ -44,7 +47,7 @@ int main(){
     // The name of the player and filename (in separate strings)
     string name, filename = "questions.txt";
 
-    name = startingGame(); // Displaying introductory screen and storing the players username in the variable name
+    // name = startingGame(); // Displaying introductory screen and storing the players username in the variable name
 
     ifstream fin(filename.c_str()); // Opening file containing questions
 
@@ -54,8 +57,8 @@ int main(){
         exit(1);
     }
 
-    cout << "We\'re not here to waste time, " << name;
-    cout << "Neither of us can wait to see that MILLION in your hands, so let\'s get started.";
+    type("We're not here to waste time, " + name);
+    type("Neither of us can wait to see that MILLION in your hands, so let's get started.");
 
     while (ques != 12){
         // Declaring variables used later (q for question asked, r for answer of the player, c1 for choice 1, c2 for choice 2, and so on...)
@@ -85,12 +88,12 @@ int main(){
             cin >> lifeResponse;
 
             // Making sure the input is correct
-            while (upper(lifeResponse) != "Y" && upper(lifeResponse) != "N"){                 
+            while (upper(lifeResponse) != "Y" && upper(lifeResponse) != "N"){
                 type("\nPlease enter some valid input: Y or N? ");
                 cin >> lifeResponse;
             }
             
-            if (upper(lifeResponse) == "Y"){                                 
+            if (upper(lifeResponse) == "Y"){
                 lifelines(name, answers[indAns], fifty, call, ask);
             }
 
@@ -106,7 +109,7 @@ int main(){
         cin >> r; // Taking in the player's answer to the question
 
         // Handling the case when the player enters something incorrect (not A, B, C, or D)
-        while (upper(r) != "A" && upper(r) != "B" && upper(r) != "C" && upper(r) != "D"){             
+        while (upper(r) != "A" && upper(r) != "B" && upper(r) != "C" && upper(r) != "D"){
             type("\nPlease enter some valid input A, B, C, or D: ");
             cin >> r;
         }
