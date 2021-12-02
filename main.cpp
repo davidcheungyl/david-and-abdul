@@ -85,12 +85,12 @@ int main(){
             cin >> lifeResponse;
 
             // Making sure the input is correct
-            while (upper(lifeResponse) != "Y" && upper(lifeResponse) != "N"){                 //toupper?
+            while (upper(lifeResponse) != "Y" && upper(lifeResponse) != "N"){                 
                 type("\nPlease enter some valid input: Y or N? ");
                 cin >> lifeResponse;
             }
             
-            if (upper(lifeResponse) == "Y"){                                     //toupper?
+            if (upper(lifeResponse) == "Y"){                                 
                 lifelines(name, answers[indAns], fifty, call, ask);
             }
 
@@ -106,7 +106,7 @@ int main(){
         cin >> r; // Taking in the player's answer to the question
 
         // Handling the case when the player enters something incorrect (not A, B, C, or D)
-        while (upper(r) != "A" && upper(r) != "B" && upper(r) != "C" && upper(r) != "D"){             //toupper?
+        while (upper(r) != "A" && upper(r) != "B" && upper(r) != "C" && upper(r) != "D"){             
             type("\nPlease enter some valid input A, B, C, or D: ");
             cin >> r;
         }
