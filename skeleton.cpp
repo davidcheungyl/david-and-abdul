@@ -114,7 +114,7 @@ string startingGame(){
     // Using dynamic memory management to create a new variable previous_name in which 
     string *enteredName = new string;
 
-    while (fin >> *enteredName){
+    while (getline(fin, *enteredName)){
         // If the current name already exists in the file
         if (name == *enteredName){
             type("Heyyyy, gotcha!!! Someone with your username has already played this game before.\n");
