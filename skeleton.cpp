@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <fstream>
 #include <time.h>
 #include <ctime>
 #include <string>
@@ -100,6 +101,46 @@ string startingGame(){
     type(question);
 
     getline(cin, name);
+
+    // Opening file with the names of all previous players to make sure the current user hasn't already played the game
+    ifstream fin("users.txt");
+
+    // Handling case when there is an error in opening the file due to any reason
+    if (fin.fail()){
+        type("Error in opening file!");
+        exit(1);
+    }
+    
+    // Using dynamic memory management to create a new variable previous_name in which 
+    string *enteredName = new string;
+
+    while (fin >> *enteredName){
+        // If the current name already exists in the file
+        if (name == *enteredName){
+            type("Heyyyy, gotcha!!! Someone with your username has already played this game before.\n");
+            type("Please bring someone else or use another name to play again later.\n");
+            exit(1);
+        }
+    }
+
+    delete enteredName; // deleting the variable which stored the username for comparison as it's not needed anymore
+
+    fin.close(); // closing file with usernames
+
+    //In case there was no match for the current username found, it means it's a new player, and we welcome new players
+    // Now, we add his/her name to users.txt for checking later
+    ofstream fout;
+    
+    fout.open("users.txt", ios::app); // Opening files with username to add username of current player to it
+    
+    // Handling case when there is an error in opening the file due to any reason
+    if (fout.fail()){
+        type("Error in opening file!");
+        exit(1);
+    }
+
+    fout << name << endl; // Adding username of current player to the relevant file
+    fout.close(); // Closing the file with usernames
 
     string question2 = ", would you like to read the instructions or do you just want to jump into the game directly?\n"
     "\nPlease enter 'Y' for reading the instructions or 'N' for skipping over them: ";

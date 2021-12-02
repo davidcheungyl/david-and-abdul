@@ -65,7 +65,7 @@ int main(){
         string q, c1, c2, c3, c4, r;
         string lifeResponse; // For storing the response of the plyaer to whether they want to use any lifeline or not
         
-        type("OK, here comes the questions...");
+        type("OK, here comes the question...");
 
         // Getting line by line input to print out the question and answer choices
         cout << endl;
@@ -176,6 +176,8 @@ int main(){
             }
         }
     }
+
+    fin.close(); // Closing the questions file
 
     // Calling the quitGame() function once the loop exits because this means that the player has passed all rounds
     quitGame(name, ques, values[indVal]);
