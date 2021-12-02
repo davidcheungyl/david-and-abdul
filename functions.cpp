@@ -72,16 +72,25 @@ void lifelines(string name, bool &fifty, bool &call, bool &ask){
 // Takes in the current question number of the user, and the value they're taking home
 // It returns nothing
 void quitGame(string name, int ques, string value){
+    string line; // For printing out award at the end
     type("\nSo our journey was till here, " + name);
+
+    // Special end screen in case the player beat the gameS
     if (value == "$1,000,000"){
         type("\nYou've definitely proven your worth, and you've etched your name into the books of history with a well deserved win");
         type("We, at 'Who wants to be a Millionare', truly admire talents like yourself!");
-        type("\nCONGRATULATIONS, YOU ARE NOW OFFICIALLY A MILLIONAIRE... AND THIS AWARD ALL YOURS!\n");
+        type("\nCONGRATULATIONS, YOU ARE NOW OFFICIALLY A MILLIONAIRE... AND THIS AWARD IS ALL YOURS!\n");
+        
+        ifstream fin ("award.txt"); // This ASCII art was taken from https://www.asciiart.eu/miscellaneous/awards
+        while (getline(fin, line)){
+            type(line);
+        }
     }
     else{
         type("\nWe were having so much fun but alas, only so much!");
         type("You may have lost the game" + name + ", but you surely won our hearts <3\n");
     }
+
     type("All the best " + name + ", and keep grinding!\n");
-    exit(1);
+    exit(1); // Exiting the program
 }
