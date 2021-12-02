@@ -47,7 +47,7 @@ int main(){
     // The name of the player and filename (in separate strings)
     string name, filename = "questions.txt";
 
-    // name = startingGame(); // Displaying introductory screen and storing the players username in the variable name
+    name = startingGame(); // Displaying introductory screen and storing the players username in the variable name
 
     ifstream fin(filename.c_str()); // Opening file containing questions
 
