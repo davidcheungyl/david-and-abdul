@@ -50,7 +50,7 @@ int main(){
 
     // Handling failure in opening the file    
     if (fin.fail()){
-        cout << "Error opening file";
+        type("Error opening file");
         exit(1);
     }
 
