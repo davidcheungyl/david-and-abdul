@@ -10,6 +10,7 @@
 
 #include "skeleton.h"
 #include "functions.h"
+#include "lifelines.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ string upper(string str);
 void type(string str);
 void printDiamond();
 string startingGame();
-void lifelines(string name, bool &fifty, bool &call, bool &ask);
+void lifelines(string name, string answer, bool &fifty, bool &call, bool &ask);
 void quitGame(string name, int ques, string value);
 
 // Main program, basically runs everything
@@ -35,9 +36,13 @@ int main(){
 
     // Sequential values of each question
     string values[13] = {"$0", "$500", "$1000", "$2000", "$5000", "$10,000", "$20,000", "$50,000", "$75,000", "$150,000", "$250,000", "$500,000", "$1,000,000"};
+    
+    // ques is the question number the player is currectly on, indVal is the index in the array values[] of the amount the user has won so far
+    // indAns is the index in the array answers[] of the answer to the question the user is answering now
+    int ques = 0, indVal = 0, indAns = 0; 
 
-    int ques = 0; // question number the player is currectly on
-    string name, filename = "questions.txt"; // The name of the player
+    // The name of the player and filename (in separate strings)
+    string name, filename = "questions.txt";
 
     // name = startingGame(); // Displaying introductory screen and storing the players username in the variable name
 
@@ -51,13 +56,14 @@ int main(){
 
     type("We're not here to waste time, " + name);
     type("Neither of us can wait to see that MILLION in your hands, so let's get started.");
-    type("OK, here comes the first question...");
 
     while (ques != 12){
         // Declaring variables used later (q for question asked, r for answer of the player, c1 for choice 1, c2 for choice 2, and so on...)
         string q, c1, c2, c3, c4, r;
         string lifeResponse; // For storing the response of the plyaer to whether they want to use any lifeline or not
         
+        type("OK, here comes the questions...");
+
         // Getting line by line input to print out the question and answer choices
         cout << endl;
         getline(fin, q);
@@ -72,22 +78,30 @@ int main(){
         getline(fin, c4);
         type(c4);
 
-        type("\nDo you think you'll be needing any lifelines? Please enter Y or N");
-        cin >> lifeResponse;
+        // If any lifeline is available, then the user will be asked whether they want to use it or not
+        if (fifty == true || call == true || ask == true){
+            type("\nDo you think you'll be needing any lifelines? Please enter Y or N");
 
-        // Making sure the input is correct
-        while (upper(lifeResponse) != "Y" && upper(lifeResponse) != "N"){
-            type("\nPlease enter some valid input: Y or N? ");
             cin >> lifeResponse;
-        }
-        
-        if (upper(lifeResponse) == "Y"){
-            lifelines(name, fifty, call, ask);
+
+            // Making sure the input is correct
+            while (upper(lifeResponse) != "Y" && upper(lifeResponse) != "N"){
+                type("\nPlease enter some valid input: Y or N? ");
+                cin >> lifeResponse;
+            }
+            
+            if (upper(lifeResponse) == "Y"){
+                lifelines(name, answers[indAns], fifty, call, ask);
+            }
+
+            else{
+                type("\nNOICE!!! So you're a confident person, eh? Let's see you do it by yourself then.");
+            }
         }
 
-        else{
-            type("\nNOICE!!! So you're a confident person, eh? Let's see you do it by yourself then.");
-        }
+        // The following program will run if lifelines are available or not, so it's okay to put them outside the if statement
+
+        type("\nWhat do you think is the right answer now? (enter A, B, C, or D)");
 
         cin >> r; // Taking in the player's answer to the question
 
@@ -98,30 +112,70 @@ int main(){
         }
 
         // If the player's answer is right
-        if (upper(r) == answers[ques]){
+        if (upper(r) == answers[indAns]){
+            // Incrementing question number, answer (so that it's now that for the next question), and the amount won
             ques++;
+            indAns++;
+            indVal++;
             type("\nYesssss, you got it right!!!");
-            type("Your wallet just got upgraded to " + values[ques]);
+            type("Your wallet just got upgraded to " + values[indVal]);
         }
 
         // For incorrect answer
         else{
+            type("\nOH NO!! That is incorrect " + name + "...");
+
             // If the player can get revived, the corresponding function will be called
             if (second == true){
-                type("ADD SECOND LIFE CODE FROM DAVID");
-                quitGame(name, ques, values[ques]);
-                // secondChance();
+                string decision, total;
+
+                // If the player is on the very first question, of course they can't be taken a step back. 
+                // In this case, they would remain at the same level but have to answer 13 questions in total
+                // the variable 'total' stores the value the player would be taken to if they avail the second chance lifeline
+                if (indVal == 0){
+                    total = "$0";
+                }
+
+                else{
+                    total = values[indVal-1];
+                }
+
+                type("\nYou still have a second life left. Would you like to avail it?");
+                type("If you don't, you'll be taking home " + values[indVal]);
+                type("But if you do, you will have to answer one additional question to reach $1,000,000!");
+                type("\nAND BEAR IN MIND THAT IF YOU DO USE THE SECOND LIFE AND STILL GET THE ANSWER WRONG, YOU WOULD LEAVE HERE WITH " + total);
+                type("\nThe choice is totally yours, " + name + ". Take your time so you have no regrets later...");
+                type("\nSo what will it be, second life (enter Y) or no (enter N)? ");
+
+                cin >> decision;
+
+                // Making sure the input is correct
+                while (upper(decision) != "Y" && upper(decision) != "N"){
+                    type("\nPlease enter some valid input: Y or N? ");
+                    cin >> decision;
+                }
+
+                // If the player decides to take the second life, the corresponding function is called
+                if (upper(decision) == "Y"){
+                    secondChance(name, ques, answers[indAns], indVal, indAns, values, total);
+                    second = false; // As the player has used the second chance lifeline, it's not available anymore
+                }
+
+                // If the player doesn't go for the second life, the game would just end
+                else{
+                    quitGame(name, ques, values[indVal]);
+                }
             }
 
-            // If the user 
+            // If the user doesn't have the second life option available (already used)
             else{
-                quitGame(name, ques, values[ques]);
+                quitGame(name, ques, values[indVal]);
             }
         }
     }
 
     // Calling the quitGame() function once the loop exits because this means that the player has passed all rounds
-    quitGame(name, ques, values[ques]);
+    quitGame(name, ques, values[indVal]);
 
     return 0;
 }
