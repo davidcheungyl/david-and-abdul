@@ -14,7 +14,7 @@
 
 using namespace std;
 
-// Defining the functions used in this file, including those from other files
+// Defining the functions used in this program, including those from other files
 
 string upper(string str);
 void type(string str);
