@@ -44,18 +44,18 @@ int main(){
     // The name of the player and filename (in separate strings)
     string name, filename = "questions.txt";
 
-    // name = startingGame(); // Displaying introductory screen and storing the players username in the variable name
+    name = startingGame(); // Displaying introductory screen and storing the players username in the variable name
 
     ifstream fin(filename.c_str()); // Opening file containing questions
 
     // Handling failure in opening the file    
     if (fin.fail()){
-        type("Error opening file");
+        cout << "Error opening file";
         exit(1);
     }
 
-    type("We're not here to waste time, " + name);
-    type("Neither of us can wait to see that MILLION in your hands, so let's get started.");
+    cout << "We\'re not here to waste time, " << name;
+    cout << "Neither of us can wait to see that MILLION in your hands, so let\'s get started.";
 
     while (ques != 12){
         // Declaring variables used later (q for question asked, r for answer of the player, c1 for choice 1, c2 for choice 2, and so on...)
