@@ -117,7 +117,7 @@ string startingGame(){
     while (getline(fin, *enteredName)){
         // If the current name already exists in the file
         if (name == *enteredName){
-            type("Heyyyy, gotcha!!! Someone with your username has already played this game before.\n");
+            type("\nHeyyyy, gotcha!!! Someone with your username has already played this game before.\n");
             type("Please bring someone else or use another name to play again later.\n");
             exit(1);
         }
