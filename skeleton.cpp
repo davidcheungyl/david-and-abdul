@@ -24,7 +24,7 @@ string upper(string str){
 
 // The type() function uses usleep() to give a smooth typing effect to the output of the game for aesthetics
 // sleep() is not used here because apparently, sleep() produces a more rigid and sequential output which doesn't look as smooth as the output of usleep()
-// It returns nothing and takes in a string which is to be typed
+// It returns nothing and takes in the string which is to be typed
 void type(string str){
     // Iterating over every character from the string and inputting it on the screen with a delay
     for (int i = 0; str[i] != '\0'; i++){
