@@ -49,7 +49,7 @@ int main(){
 
     name = startingGame(); // Displaying introductory screen and storing the players username in the variable name
 
-    ifstream fin(filename.c_str()); // Opening file containing questions
+    ifstream fin(filename.c_str()); // Opening file containing questions. These questions are taken from numerous sources like webpages and YouTube videos.
 
     // Handling failure in opening the file    
     if (fin.fail()){
