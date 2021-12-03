@@ -71,20 +71,20 @@ void phoneOrAsk(string name, string answer, string life){
 
     // But if it's 2, we'll hint towards the answer and the player can easily guess it
     else{
-        type("\nAlright, so now, you'll be displayed a statement or a question, and it hints directly to the answer.");
-        type("Read it carefully and try to think outside the box, shouldn't be difficult for you.\n");
+        type("\nAlright, so now, you'll be displayed a question, and it hints directly to the answer.");
+        type("Read it carefully and try to think outside the box, shouldn't be any difficult for you.\n");
         if (answer == "A"){
-            type("The alphabets cannot start without me. What am I?");
+            type("The alphabets cannot start without me. What am I?"); // Riddle created by ourselves
         }
         else if (answer == "B"){
-            type("I am known for producing that sweet honey you have in breakfast everyday. What am I?");
+            type("I am known for producing that sweet honey you have in breakfast everyday. What am I?"); // Riddle created by ourselves
         }
         else if (answer == "C"){
-            type("Mediterranean, Caspian, Baltic, Arabian, Black, Red, Carribean... what are these names?");
+            type("Mediterranean, Caspian, Baltic, Arabian, Black, Red, Carribean... what are these names?"); // Riddle created by ourselves
             type("Now might be a good time to remember those childhood geography classes!");
         }
         else if (answer == "D"){
-            type("D hai bsdk");
+            type("Every Dawn and every Dusk begins with me, and Daybreak couldn’t start without me. What am I"); // Riddle inspired by https://huntclues.com/answers/the-letter-d/
         }
     }
 }
