@@ -29,8 +29,8 @@ void type(string str){
     // Iterating over every character from the string and inputting it on the screen with a delay
     for (int i = 0; str[i] != '\0'; i++){
         cout << str[i];
-        cout.flush(); // To keep the previously printed letter and print the next wide by its side (just like typing something letter by letter)
-	    usleep(40000);
+        cout.flush(); // To keep the previously printed letter and print the next one by its side (just like typing something letter by letter)
+	usleep(40000);
     }
     cout << endl;
 }
