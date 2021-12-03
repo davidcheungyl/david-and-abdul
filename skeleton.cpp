@@ -96,7 +96,7 @@ string startingGame(){
 
     type(starting);
 
-    string question = " But first, what shall we call you? ";
+    string question = "But first, what shall we call you? ";
 
     type(question);
 

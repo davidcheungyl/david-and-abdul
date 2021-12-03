@@ -96,7 +96,7 @@ void quitGame(string name, int ques, string value){
     else{
         type("\nWe were having so much fun but alas, only so much!");
         type("You are leaving this arena with " + value);
-        type("You may have lost the game" + name + ", but you surely won our hearts <3\n");
+        type("You may have lost the game " + name + ", but you surely won our hearts <3\n");
         type("Here's a small token of appreciation for you: ");
 
         ifstream fin ("lose_award.txt"); // This ASCII art was also taken from https://www.asciiart.eu/miscellaneous/awards
